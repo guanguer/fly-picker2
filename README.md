@@ -1,2 +1,2 @@
 # fly-picker2
-Angular2 date picker module
+Angular2 date picker module - Work in progress...
