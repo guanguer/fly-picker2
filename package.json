@@ -3,31 +3,50 @@
   "version": "0.0.0",
   "description": "Angular2 date picker module",
   "license": "MIT",
-  "main": "fly-picker2",
-  "repository": { 
+  "main": "bundle/fly-picker2.bundle.umd.js",
+  "typings": "index.d.ts",
+  "module": "index.js",
+  "keywords": [
+    "Angular2",
+    "Date Picker"
+  ],
+  "author": "Juan Taborda <jftabord@gmail.com",
+  "repository": {
     "type": "git",
     "url": "https://github.com/guanguer/fly-picker2.git"
   },
   "scripts": {
-    "prebuild": "rimraf dist/*.*",
-    "build": "webpack",
-    "lint": "tslint \"src/*.ts\""
+    "prebuild": "rimraf dist",
+    "build": "gulp",
+    "tsc": "ngc -p tsconfig.json",
+    "lint": "tslint \"src/*.ts\"",
+    "release": "cd dist & npm publish"
   },
   "dependencies": {},
   "devDependencies": {
     "@angular/common": "2.4.5",
     "@angular/compiler": "2.4.5",
+    "@angular/compiler-cli": "^2.4.6",
     "@angular/core": "2.4.5",
     "@types/node": "^7.0.4",
     "angular2-template-loader": "^0.6.0",
-    "awesome-typescript-loader": "~3.0.0-beta.18",
+    "awesome-typescript-loader": "^3.0.0-beta.18",
+    "clean-css": "^4.0.4",
     "codelyzer": "~2.0.0-beta.4",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-shell": "^0.5.2",
+    "html-minifier": "^3.3.0",
+    "install": "^0.8.5",
+    "npm": "^4.1.2",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.4",
+    "run-sequence": "^1.2.2",
     "rxjs": "5.1.0",
     "tslint": "4.3.1",
     "typescript": "2.1.5",
     "webpack": "^2.2.1",
+    "webpack-stream": "^3.2.0",
     "zone.js": "0.7.6"
   }
 }
