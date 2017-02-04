@@ -21,6 +21,10 @@
     "tsc": "ngc -p tsconfig.json",
     "lint": "tslint \"src/*.ts\""
   },
+  "engines": {
+    "node": "6.x",
+    "npm": "3.x"
+  },
   "dependencies": {},
   "devDependencies": {
     "@angular/common": "2.4.5",
