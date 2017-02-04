@@ -1,6 +1,6 @@
 {
   "name": "fly-picker2",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Angular2 date picker module",
   "license": "MIT",
   "main": "bundle/fly-picker2.bundle.umd.js",
