@@ -1,3 +1,178 @@
-h1 {
-  color: blue;
+.formgroup {
+  display: flex;
+}
+
+.fieldgroup {
+  float: left;
+  display: flex;
+  font-size: 1rem;
+  font-family: Sans-Serif;
+  cursor: pointer;
+}
+
+.datefield {
+  font-size: 1.2rem;
+  color: #000;
+  height: 36px;
+  max-width: 150px;
+  border-left: 1px solid #c7c7c7;
+  border-top: 1px solid #c7c7c7;
+  border-bottom: 1px solid #c7c7c7;
+  border-right: 1px solid transparent;
+  padding: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  cursor: pointer;
+}
+
+.calendaricon {
+  height: 36px;
+  border-right: 1px solid #c7c7c7;
+  border-top: 1px solid #c7c7c7;
+  border-bottom: 1px solid #c7c7c7;
+  width: auto;
+  padding: 5px;
+  margin-right: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.calendaricon:before {
+  content: "\\1F4C5";
+  position:relative;
+  padding: 5px;  
+}
+
+.calendarmenu {
+  border: 1px solid #c7c7c7;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 1px;
+  position: relative;
+  max-width: 270px;
+}
+
+.calendarmenu:before {
+  content: "";
+  clip: auto;
+  display: block;
+  border-bottom: 10px solid #c7c7c7;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  top: -10px;
+}
+
+.calendarmenu:after {
+  content: "";
+  clip: auto;
+  display: block;
+  border-bottom: 9px solid #fff;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  position: absolute;
+  top: -7px;
+  left: 6px;
+}
+
+.calendarblock {
+  font-size: .9rem;
+  margin: 10px;
+  text-align: center;
+  max-width: 231px;
+}
+
+.weekday {
+  text-align: center;
+  padding: 5px;
+}
+
+.monthday {
+  background-color: #f1f1f1;
+  border: 1px solid transparent;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.selectedday {
+  background-color: #00a7c9;
+  color: #fff;
+}
+
+.disabledday {
+  background-color: #fff;
+  color: #c7c7c7;
+  cursor: default;
+}
+
+.empty {
+  background-color: #fff;
+  cursor: default;
+}
+
+.monthday:hover {
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+}
+
+.selectedday:hover {
+  background-color: #00a7c9;
+  color: #fff;
+}
+
+.disabledday:hover {
+  background-color: #fff;
+  color: #c7c7c7;
+  border: 1px solid transparent;
+  cursor: default;
+}
+
+.back, .next {
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 26px;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.next {
+  float: right;
+}
+
+.back {
+  float: left;
+}
+
+.back:before, .back:after,
+.next:before, .next:after {
+  border-right: 8px solid #000;
+  content: "";
+  display: block;
+  height: 8px;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.back:after, .next:after {
+  top: auto;
+  bottom:0;
+}
+
+.back:before, .next:after {
+  transform: skewX(45deg);
+}
+
+.back:after, .next::before {
+  transform: skewX(-45deg);
+}
+
+.back:hover:before, .back:hover:after,
+.next:hover:before, .next:hover:after {
+  border-color: #00a7c9;
 }

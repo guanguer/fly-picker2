@@ -9,7 +9,7 @@ branches:
   only:
     - master
 notifications:
-  email: false
+  email: true
 before_script:
   - npm prune
 script:
