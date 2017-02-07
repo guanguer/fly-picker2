@@ -1,29 +1,13 @@
 <div class="container">
   <div class="formgroup">
-    <div class="fieldgroup" (click)="onInputClick($event)">
+    <div class="fieldgroup" (click)="onDepartureInputClick($event)">
       <input [value]="departureDay" class="datefield" placeholder="Departure" readonly="true" type="text" tabindex="0">
       <span class="calendaricon"></span>
     </div>
-    <div class="fieldgroup" (click)="onInputClick($event)">
-      <input class="datefield" type="text" placeholder="Return" readonly="true" tabindex="0">
+    <div class="fieldgroup" (click)="onReturnInputClick($event)">
+      <input [value]="returnDay" class="datefield" placeholder="Return" readonly="true" type="text" tabindex="0">
       <span class="calendaricon"></span>
     </div>
   </div>
-  <div *ngIf="showCalendar" class="calendarmenu">
-    <div class="calendarblock">
-      <table class="calendar-table">
-        <caption class="title"><span *ngIf="showBack" class="back" (click)="onBackClick($event)" tabindex="0"></span><span>{{currentMonth.name}}</span> <span>{{currentMonth.year}}</span><span class="next" *ngIf="showNext" (click)="onNextClick($event)" tabindex="0"></span></caption>
-        <thead>
-          <tr>
-            <th class="weekday" *ngFor="let day of weekDays">{{day}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let week of weeks">
-            <td *ngFor="let day of week" [ngClass]="day.class" (click)="onDaySelected($event, day)" tabindex="0">{{day.text}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <calendar *ngIf="showCalendar && selectedDate" [first]="departure" [startDate]="startDate" [selectedDate]="selectedDate" (dateSelected)="onDaySelected($event)" (clickOutside)="onClickOutside()"></calendar>
 </div>

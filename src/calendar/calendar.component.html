@@ -1,0 +1,17 @@
+<div [ngClass]="className">
+  <div class="calendarblock">
+    <table>
+      <caption class="title"><span *ngIf="showBackButton()" class="back" (click)="onBackClick($event)" tabindex="0"></span><span>{{currentMonth.name}}</span> <span>{{currentMonth.year}}</span><span class="next" *ngIf="showNextButton()" (click)="onNextClick($event)" tabindex="0"></span></caption>
+      <thead>
+        <tr>
+          <th class="weekday" *ngFor="let day of weekDays">{{day}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let week of weeks">
+          <td *ngFor="let day of week" [ngClass]="day.class" (click)="!day.disabled && dateSelected.emit(day); $event.stopPropagation();" tabindex="0">{{day.text}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

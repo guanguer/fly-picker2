@@ -11,10 +11,10 @@ function isCss(type) {
   return type && type === 'css';
 }
 
-function replaceStringsWithContents(string, type) {
+function replaceStringsWithContents(base, string, type) {
   return string.replace(stringRegex, function (match, quote, url) {
     if (url.charAt(0) === ".") {
-      url = url.replace("./", "./src/");
+      url = url.replace("./", base);
     }
 
     let contents = fs.readFileSync(url).toString();
@@ -33,13 +33,13 @@ module.exports = function(source, enc, cb) {
   let newSource = source.contents.toString();
   newSource = newSource.replace(templateUrlRegex, function (match, url) {
     // replace: templateUrl: './path/to/template.html'
-    // with: template: require('./path/to/template.html')
-    return "template:" + replaceStringsWithContents(url, 'html');
+    // with: template: [minified html])
+    return "template:" + replaceStringsWithContents(source.base, url, 'html');
   })
   .replace(stylesRegex, function (match, urls) {
     // replace: stylesUrl: ['./foo.css', "./baz.css", "./index.component.css"]
-    // with: styles: [require('./foo.css'), require("./baz.css"), require("./index.component.css")]
-    return "styles:" + replaceStringsWithContents(urls, 'css');
+    // with: styles: [minified styles]
+    return "styles:" + replaceStringsWithContents(source.base, urls, 'css');
   });
   source.contents = new Buffer(newSource);
   cb(null, source);

@@ -13,19 +13,29 @@ var paths = {
   entry: 'dist/index.js',
   dest: 'dist',
   bundle: 'dist/bundle',
-  tmp: 'tmp',
+  tmp: './tmp/',
   src: 'src',
-  component: 'src/fly-picker.component.ts'
+  main: './src/',
+  calendar: './src/calendar/'
 };
 
 gulp.task('backup', function() {
-  return gulp.src(paths.component).pipe(gulp.dest(paths.tmp));
+  return gulp.src([
+      paths.main + 'fly-picker.component.ts',
+      paths.calendar + 'calendar.component.ts'
+    ]).pipe(gulp.dest(paths.tmp));
 });
 
-gulp.task('template-load', ['backup'], function() {
-  return gulp.src(paths.component)
+gulp.task('template-load-main', ['backup'], function() {
+  return gulp.src(paths.main + 'fly-picker.component.ts')
     .pipe(through.obj(inlineTemplate))
-    .pipe(gulp.dest(paths.src));
+    .pipe(gulp.dest(paths.main));
+});
+
+gulp.task('template-load-calendar', function() {
+  return gulp.src(paths.calendar + 'calendar.component.ts')
+    .pipe(through.obj(inlineTemplate))
+    .pipe(gulp.dest(paths.calendar));
 });
 
 gulp.task('build', shell.task([
@@ -48,8 +58,14 @@ gulp.task('bundle', function() {
     .pipe(gulp.dest(paths.bundle));
 });
 
-gulp.task('restore', function() {
-  return gulp.src(paths.tmp + '/*.ts').pipe(gulp.dest(paths.src));
+gulp.task('restore-main', function() {
+  return gulp.src(paths.tmp + 'fly-picker.component.ts')
+    .pipe(gulp.dest(paths.main));
+});
+
+gulp.task('restore-calendar', function() {
+  return gulp.src(paths.tmp + 'calendar.component.ts')
+    .pipe(gulp.dest(paths.calendar));
 });
 
 gulp.task('postbuild', function() {
@@ -58,5 +74,5 @@ gulp.task('postbuild', function() {
 });
 
 gulp.task('default', function(done) {
-  sync('template-load', 'build', 'entry-files', 'bundle', 'restore', 'postbuild', done);
+  sync('template-load-main', 'template-load-calendar', 'build', 'entry-files', 'bundle', 'restore-main', 'restore-calendar', 'postbuild', done);
 });
