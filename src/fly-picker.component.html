@@ -1,10 +1,10 @@
 <div class="container">
   <div class="formgroup">
-    <div class="fieldgroup" (click)="onDepartureInputClick($event)">
+    <div class="fieldgroup" (click)="onDepartureInputClick($event)" (keyup)="onDepartureInputKeyEvent($event)">
       <input [value]="departureDay" class="datefield" placeholder="Departure" readonly="true" type="text" tabindex="0">
       <span class="calendaricon"></span>
     </div>
-    <div class="fieldgroup" (click)="onReturnInputClick($event)">
+    <div class="fieldgroup" (click)="onReturnInputClick($event)" (keyup)="onReturnInputKeyEvent($event)">
       <input [value]="returnDay" class="datefield" placeholder="Return" readonly="true" type="text" tabindex="0">
       <span class="calendaricon"></span>
     </div>

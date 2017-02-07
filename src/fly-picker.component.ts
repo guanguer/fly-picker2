@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { Day } from './model';
 import { CalendarService } from './shared';
 
@@ -8,6 +8,8 @@ import { CalendarService } from './shared';
   styleUrls: ['./fly-picker.component.css']
 })
 export class FlyPickerComponent implements OnInit {
+  @Output() dateChanged = new EventEmitter();
+
   weekDays: Array<string>;
 
   departureDate: Day;
@@ -76,6 +78,14 @@ export class FlyPickerComponent implements OnInit {
     this.openDepartureCalendar();
   }
 
+  onDepartureInputKeyEvent(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.keyCode === 13 ) {
+      this.openDepartureCalendar();
+    }
+  }
+
   openDepartureCalendar() {
     if (!this.showCalendar) {
       this.departure = true;
@@ -89,6 +99,14 @@ export class FlyPickerComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.openReturnCalendar();
+  }
+
+  onReturnInputKeyEvent(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.keyCode === 13 ) {
+      this.openReturnCalendar();
+    }
   }
 
   openReturnCalendar() {
@@ -114,6 +132,13 @@ export class FlyPickerComponent implements OnInit {
       this.setReturnDay();
     }
     this.closeCalendar();
+    this.emitSelectedDates();
+  }
+
+  emitSelectedDates() {
+    let start = `${this.departureDate.year}/${this.departureDate.month + 1}/${this.departureDate.day}`;
+    let end = `${this.returnDate.year}/${this.returnDate.month + 1}/${this.returnDate.day}`;
+    this.dateChanged.emit({ start, end });
   }
 
   onClickOutside() {
@@ -124,7 +149,7 @@ export class FlyPickerComponent implements OnInit {
     let start = `${this.departureDate.year}${this.departureDate.month}${this.departureDate.day}`;
     let end = `${this.returnDate.year}${this.returnDate.month}${this.returnDate.day}`;
 
-    return parseInt(start) > parseInt(end);
+    return parseInt(start, 10) > parseInt(end, 10);
   }
 
 }
