@@ -9,7 +9,9 @@ Angular2 date picker module - Work in progress...
 
 ## Installation
 * In your Angular2 project run
-__npm install --save fly-picker2
+```bash
+$ npm install --save fly-picker2
+```
 
 ## Usage
 
